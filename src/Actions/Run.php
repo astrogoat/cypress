@@ -2,11 +2,11 @@
 
 namespace Astrogoat\Cypress\Actions;
 
-use Illuminate\Bus\PendingBatch;
 use Astrogoat\Cypress\Enums\RunSteps;
+use Astrogoat\Cypress\Events\FinishedTesting;
 use Astrogoat\Cypress\Jobs\PrepareTests;
 use Helix\Lego\Apps\Actions\BatchAction;
-use Astrogoat\Cypress\Events\FinishedTesting;
+use Illuminate\Bus\PendingBatch;
 
 class Run extends BatchAction
 {

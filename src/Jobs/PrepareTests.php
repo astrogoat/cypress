@@ -2,19 +2,23 @@
 
 namespace Astrogoat\Cypress\Jobs;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Bus\Batchable;
-use Illuminate\Support\Facades\File;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Astrogoat\Cypress\Models\TestRun;
-use Symfony\Component\Finder\SplFileInfo;
+use Illuminate\Bus\Batchable;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\File;
+use Symfony\Component\Finder\SplFileInfo;
 
 class PrepareTests implements ShouldQueue
 {
-    use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Batchable;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public function __construct()
     {
@@ -36,8 +40,8 @@ class PrepareTests implements ShouldQueue
 
         $this->batch()->add($specFileJobs);
 
-//        $this->batch()->add(new RunTestSpec('tests/cypress/tests/helix-sleep/smoke/cart.cy.js'));
-//        $this->batch()->add(new RunTestSpec('tests/cypress/tests/helix-sleep/smoke/cart.cy.js'));
-//        $this->batch()->add(new RunTestSpec('tests/cypress/tests/helix-sleep/smoke/cart.cy.js'));
+        //        $this->batch()->add(new RunTestSpec('tests/cypress/tests/helix-sleep/smoke/cart.cy.js'));
+        //        $this->batch()->add(new RunTestSpec('tests/cypress/tests/helix-sleep/smoke/cart.cy.js'));
+        //        $this->batch()->add(new RunTestSpec('tests/cypress/tests/helix-sleep/smoke/cart.cy.js'));
     }
 }

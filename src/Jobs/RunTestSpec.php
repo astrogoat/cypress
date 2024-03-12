@@ -2,21 +2,25 @@
 
 namespace Astrogoat\Cypress\Jobs;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Bus\Batchable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Process;
-use Illuminate\Queue\InteractsWithQueue;
+use Astrogoat\Cypress\Events\FailedTestingSpecFile;
+use Astrogoat\Cypress\Events\FinishedTestingSpecFile;
+use Astrogoat\Cypress\Events\StartedTestingSpecFile;
 use Astrogoat\Cypress\Models\TestRun;
+use Illuminate\Bus\Batchable;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Astrogoat\Cypress\Events\FailedTestingSpecFile;
-use Astrogoat\Cypress\Events\StartedTestingSpecFile;
-use Astrogoat\Cypress\Events\FinishedTestingSpecFile;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Process;
 
 class RunTestSpec implements ShouldQueue
 {
-    use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Batchable;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public int $timeout = 3600;
 
@@ -45,14 +49,14 @@ class RunTestSpec implements ShouldQueue
                         $testsResult->tests()->create([
                             'title' => $data[1]->title,
                             'status' => 'pass',
-                            'spec_file' => $this->specFilePath
+                            'spec_file' => $this->specFilePath,
                         ]);
                     } elseif ($data[0] === 'fail') {
                         $testsResult->tests()->create([
                             'title' => $data[1]->title,
                             'status' => $data[0],
                             'spec_file' => $this->specFilePath,
-                            'error' => $data[1]->err ?? 'Unknown error'
+                            'error' => $data[1]->err ?? 'Unknown error',
                         ]);
                     }
                 }

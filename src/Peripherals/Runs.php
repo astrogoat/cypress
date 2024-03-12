@@ -3,8 +3,8 @@
 namespace Astrogoat\Cypress\Peripherals;
 
 use Astrogoat\Cypress\Models\TestRun;
-use Illuminate\Database\Eloquent\Collection;
 use Helix\Lego\Settings\Peripherals\Peripheral;
+use Illuminate\Database\Eloquent\Collection;
 
 class Runs extends Peripheral
 {

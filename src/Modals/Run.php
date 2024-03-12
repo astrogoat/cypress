@@ -2,8 +2,8 @@
 
 namespace Astrogoat\Cypress\Modals;
 
-use Helix\Lego\Http\Livewire\Modal;
 use Astrogoat\Cypress\Models\TestRun as TestRunModel;
+use Helix\Lego\Http\Livewire\Modal;
 
 class Run extends Modal
 {

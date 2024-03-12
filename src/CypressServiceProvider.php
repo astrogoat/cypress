@@ -2,16 +2,16 @@
 
 namespace Astrogoat\Cypress;
 
-use Livewire\Livewire;
+use Astrogoat\Cypress\Actions\Run as RunAction;
+use Astrogoat\Cypress\Modals\Run as RunModal;
+use Astrogoat\Cypress\Peripherals\Runs as RunsPeripheral;
+use Astrogoat\Cypress\Settings\CypressSettings;
 use Helix\Lego\Apps\App;
 use Helix\Lego\LegoManager;
-use Astrogoat\Cypress\Actions\Run as RunAction;
 use Illuminate\Support\Facades\Config;
+use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
-use Astrogoat\Cypress\Peripherals\Runs as RunsPeripheral;
-use Astrogoat\Cypress\Modals\Run as RunModal;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Astrogoat\Cypress\Settings\CypressSettings;
 
 class CypressServiceProvider extends PackageServiceProvider
 {
@@ -44,7 +44,7 @@ class CypressServiceProvider extends PackageServiceProvider
                     'retry_after' => 10800,
                     'block_for' => null,
                     'after_commit' => false,
-                ]
+                ],
             ]
         ));
     }

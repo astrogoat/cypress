@@ -2,9 +2,9 @@
 
 namespace Astrogoat\Cypress\Tests;
 
+use Astrogoat\Cypress\CypressServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Astrogoat\Cypress\CypressServiceProvider;
 
 class TestCase extends Orchestra
 {

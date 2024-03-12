@@ -2,9 +2,9 @@
 
 namespace Astrogoat\Cypress\Actions;
 
+use Astrogoat\Cypress\Jobs\OpenCypress;
 use Helix\Fabrick\Notification;
 use Helix\Lego\Apps\Actions\Action;
-use Astrogoat\Cypress\Jobs\OpenCypress;
 
 class Open extends Action
 {
