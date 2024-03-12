@@ -13,3 +13,5 @@ vendor
 node_modules
 .php-cs-fixer.cache
 .DS_Store
+/cypress
+/cypress.config.js

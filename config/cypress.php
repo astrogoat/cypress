@@ -1,5 +1,5 @@
 <?php
-// config for VendorName/Skeleton
+// config for Astrogoat/Cypress
 
 return [
     /*
@@ -11,5 +11,5 @@ return [
         'head' => true,
         'body' => true,
         'end' => true,
-    ]
+    ],
 ];
