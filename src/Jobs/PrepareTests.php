@@ -9,8 +9,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\File;
-use Symfony\Component\Finder\SplFileInfo;
 
 class PrepareTests implements ShouldQueue
 {
@@ -20,7 +18,7 @@ class PrepareTests implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public function __construct()
+    public function __construct(protected array $testSpecFilePaths)
     {
     }
 
@@ -32,16 +30,8 @@ class PrepareTests implements ShouldQueue
 
         TestRun::create(['batchId' => $this->batchId]);
 
-        $testSpecs = File::allFiles("tests/cypress/tests/" . tenant()->id);
-
-        $specFileJobs = collect($testSpecs)->map(function (SplFileInfo $specFile) {
-            return new RunTestSpec($specFile->getPathname());
-        })->toArray();
+        $specFileJobs = collect($this->testSpecFilePaths)->mapInto(RunTestSpec::class);
 
         $this->batch()->add($specFileJobs);
-
-        //        $this->batch()->add(new RunTestSpec('tests/cypress/tests/helix-sleep/smoke/cart.cy.js'));
-        //        $this->batch()->add(new RunTestSpec('tests/cypress/tests/helix-sleep/smoke/cart.cy.js'));
-        //        $this->batch()->add(new RunTestSpec('tests/cypress/tests/helix-sleep/smoke/cart.cy.js'));
     }
 }

@@ -2,7 +2,8 @@
 
 namespace Astrogoat\Cypress;
 
-use Astrogoat\Cypress\Actions\Run as RunAction;
+use Astrogoat\Cypress\Actions\RunFullTestSuite as RunFullTestSuiteAction;
+use Astrogoat\Cypress\Actions\RunSelectedTests as RunSelectedTestsAction;
 use Astrogoat\Cypress\Modals\Run as RunModal;
 use Astrogoat\Cypress\Peripherals\Runs as RunsPeripheral;
 use Astrogoat\Cypress\Settings\CypressSettings;
@@ -51,7 +52,8 @@ class CypressServiceProvider extends PackageServiceProvider
 
     public function bootingPackage()
     {
-        Livewire::component('astrogoat.cypress.actions.run', RunAction::class);
+        Livewire::component('astrogoat.cypress.actions.run-full-test-suite', RunFullTestSuiteAction::class);
+        Livewire::component('astrogoat.cypress.actions.run-selected-tests', RunSelectedTestsAction::class);
         Livewire::component('astrogoat.cypress.peripherals.runs', RunsPeripheral::class);
         Livewire::component('astrogoat.cypress.modals.run', RunModal::class);
     }

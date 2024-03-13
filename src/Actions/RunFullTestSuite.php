@@ -2,17 +2,19 @@
 
 namespace Astrogoat\Cypress\Actions;
 
+use SplFileInfo;
+use Illuminate\Support\Facades\File;
 use Astrogoat\Cypress\Enums\RunSteps;
 use Astrogoat\Cypress\Events\FinishedTesting;
 use Astrogoat\Cypress\Jobs\PrepareTests;
 use Helix\Lego\Apps\Actions\BatchAction;
 use Illuminate\Bus\PendingBatch;
 
-class Run extends BatchAction
+class RunFullTestSuite extends BatchAction
 {
     public function batchTitle(): string
     {
-        return 'Run tests';
+        return 'Run full test suite';
     }
 
     public function batchJobBroadcastChannel(): string
@@ -36,7 +38,11 @@ class Run extends BatchAction
 
     public function batchJobs(): array
     {
-        return [new PrepareTests()];
+        $testSpecs = File::allFiles(base_path("tests/cypress/tests/" . tenant()->id));
+
+        $specFilePaths = collect($testSpecs)->map(fn (SplFileInfo $specFile) => $specFile->getPathname())->toArray();
+
+        return [new PrepareTests($specFilePaths)];
     }
 
     public function batchJobSteps(): string
