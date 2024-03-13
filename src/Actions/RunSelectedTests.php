@@ -48,6 +48,10 @@ class RunSelectedTests extends BatchAction
 
     public function getTestSpecFiles(): array
     {
+        if (! File::exists(base_path('tests/cypress/tests/' . tenant()->id))) {
+            return [];
+        }
+
         return collect(File::allFiles(base_path('tests/cypress/tests/' . tenant()->id)))
             ->map(function (SplFileInfo $fileInfo) {
                 return [
