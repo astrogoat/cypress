@@ -2,14 +2,14 @@
 
 namespace Astrogoat\Cypress\Actions;
 
-use SplFileInfo;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
 use Astrogoat\Cypress\Enums\RunSteps;
 use Astrogoat\Cypress\Events\FinishedTesting;
 use Astrogoat\Cypress\Jobs\PrepareTests;
 use Helix\Lego\Apps\Actions\BatchAction;
 use Illuminate\Bus\PendingBatch;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+use SplFileInfo;
 
 class RunSelectedTests extends BatchAction
 {
