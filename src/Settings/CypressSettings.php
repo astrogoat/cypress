@@ -4,9 +4,9 @@ namespace Astrogoat\Cypress\Settings;
 
 use Astrogoat\Cypress\Actions\Open;
 use Astrogoat\Cypress\Actions\RunFullTestSuite;
+use Astrogoat\Cypress\Actions\RunSelectedTests;
 use Astrogoat\Cypress\Peripherals\Runs;
 use Helix\Lego\Settings\AppSettings;
-use Astrogoat\Cypress\Actions\RunSelectedTests;
 
 class CypressSettings extends AppSettings
 {
